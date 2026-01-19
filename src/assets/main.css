@@ -1,0 +1,174 @@
+/* =========================================
+   1. CSS Variables / Design Tokens
+   ========================================= */
+:root {
+  /* Colors - Palette: Muted Greys, Cream, and Deep Charcoal */
+  --color-primary: #4A4A4A;       /* Deep Charcoal (Primary Text/Headers) */
+  --color-secondary: #8C8C8C;     /* Muted Medium Grey (Subtitles/Secondary Text) */
+  --color-accent: #C5A065;        /* Muted Gold/Bronze (Buttons/Highlights for Luxury feel) */
+  
+  --primary-shadow: rgba(74, 74, 74, 0.15); /* Soft shadow using primary color */
+  --secondary-dark-grey: #333333; /* Darker grey for hover states or footer backgrounds */
+  
+  --light-text: #F9F9F9;          /* Off-white for text on dark backgrounds */
+  --dark-background: #2C2C2C;     /* Dark grey background for specific sections */
+  
+  --color-background: #F0EFE7;    /* Cream/Off-White (Main Page Background - "Rustic/Canvas" feel) */
+  --color-text-light: #666666;    /* Soft grey for body text */
+  --bg-primary: #FFFFFF;          /* Pure white for card backgrounds/contrast */
+
+  /* Typography */
+  --font-family-body: 'Lato', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-family-headings: 'Playfair Display', Georgia, "Times New Roman", serif; /* Luxurious/Rustic serif */
+  
+  --font-size-base: 1rem;         /* 16px */
+  --font-size-lg: 1.25rem;        /* 20px */
+  --font-size-xl: 2.5rem;         /* 40px - For Hero Headers */
+  
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-bold: 700;
+  
+  --line-height-base: 1.6;
+
+  /* Spacing */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 4rem;
+  --spacing-top: 80px;            /* Top of the page spacing for fixed navbar */
+
+  /* UI Elements */
+  --border-radius: 4px;           /* Small radius for a crisp, professional look */
+  --box-shadow: 0 4px 6px -1px var(--primary-shadow), 0 2px 4px -1px var(--primary-shadow);
+
+  /* Transitions */
+  --transition-default: all 0.3s ease-in-out;
+  --transition-color: color 0.2s ease, background-color 0.2s ease;
+}
+
+/* =========================================
+   2. Global Reset & Base Styles
+   ========================================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Base Global Styles */
+html, body {
+  /* font-family: var(--font-family-body);
+  color: var(--color-secondary); */
+  width: 100%;
+  overflow-x: hidden !important;
+  position: relative;
+  /* Padding top handled by specific sections if using fixed nav */
+}
+
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-primary);
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-base);
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* =========================================
+   3. Typography Styles
+   ========================================= */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family-headings);
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-md);
+  font-weight: var(--font-weight-bold);
+}
+
+h1 {
+  font-size: var(--font-size-xl);
+}
+
+p {
+  margin-bottom: var(--spacing-md);
+  color: var(--color-text-light);
+}
+
+/* =========================================
+   4. Component Utility Classes (Using Variables)
+   ========================================= */
+
+/* Buttons */
+.btn-primary {
+  background-color: var(--color-accent);
+  color: var(--light-text);
+  border: none;
+  padding: var(--spacing-sm) var(--spacing-lg);
+  font-family: var(--font-family-body);
+  font-weight: var(--font-weight-bold);
+  border-radius: var(--border-radius);
+  transition: var(--transition-color);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary);
+  color: var(--color-accent);
+}
+
+/* Cards (for Paintings/Prints) */
+.art-card {
+  background-color: var(--bg-primary);
+  border: 1px solid rgba(0,0,0,0.05);
+  box-shadow: var(--box-shadow);
+  border-radius: var(--border-radius);
+  transition: var(--transition-default);
+  overflow: hidden;
+}
+
+.art-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px -3px var(--primary-shadow);
+}
+
+/* Layout Spacing */
+.section-padding {
+  padding-top: var(--spacing-xl);
+  padding-bottom: var(--spacing-xl);
+}
+
+.navbar-spacer {
+  height: var(--spacing-top);
+}
+
+/* =========================================
+   5. Integration with Bootstrap Overrides
+   ========================================= */
+   
+/* Ensure Bootstrap links use our accent color */
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+  transition: var(--transition-color);
+}
+
+a:hover {
+  color: var(--color-primary);
+}
+
+/* Override Bootstrap container background if needed */
+.bg-light {
+  background-color: var(--color-background) !important;
+}
+
+.bg-dark {
+  background-color: var(--dark-background) !important;
+}
