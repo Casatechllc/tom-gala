@@ -62,27 +62,27 @@ const openModal = (art) => {
             </div>
 
             <div class="card-body text-center">
-  <span class="badge bg-light text-dark mb-2">{{ art.categories.join(', ') }}</span>
-  <h5 class="card-title">{{ art.title }}</h5>
-  <p class="card-text text-muted mb-3">${{ PRINT_PRICE.toFixed(2) }}</p>
-  
-  <div class="d-flex gap-2 justify-content-center">
-    <button 
-      @click="openModal(art)" 
-      class="btn btn-outline-dark btn-sm flex-fill"
-    >
-      View
-    </button>
+                <span class="badge bg-light text-dark mb-2">{{ art.categories.join(', ') }}</span>
+                <h5 class="card-title">{{ art.title }}</h5>
+                <p class="card-text text-muted mb-3">${{ PRINT_PRICE.toFixed(2) }}</p>
+                
+                <div class="d-flex gap-2 justify-content-center">
+                    <button 
+                    @click="openModal(art)" 
+                    class="btn btn-outline-dark btn-sm flex-fill"
+                    >
+                    View
+                    </button>
 
-    <button 
-      @click="addToCart(art)" 
-      class="btn btn-primary btn-sm flex-fill"
-    >
-      Add to Cart
-    </button>
-  </div>
-  
-</div>
+                    <button 
+                    @click="addToCart(art)" 
+                    class="btn btn-primary btn-sm flex-fill"
+                    >
+                    Add to Cart
+                    </button>
+                </div>
+                
+            </div>
 
           </div>
         </div>
