@@ -78,15 +78,15 @@ const awards = [
         <div class="row justify-content-center">
           <div class="col-lg-8 text-center" data-aos="fade-up">
             <h2 class="text-white mb-5">Artist Statement</h2>
-            <blockquote class="blockquote custom-blockquote">
+            <blockquote class="blockquote custom-blockquote" data-aos="fade-left">
               <p class="mb-4">
-                "I work exclusively in oil paints. I am constantly experimenting with my chosen medium 
+                I work exclusively in oil paints. I am constantly experimenting with my chosen medium 
                 and use a wide variety of painting techniques. I enjoy painting different subjects such 
-                as seascapes, animals, marine scenes, landscapes, still life, and modern art… They all interest me."
+                as seascapes, animals, marine scenes, landscapes, still life, and modern art… They all interest me.
               </p>
               <p>
-                "I have established myself as a Fine Artist over the past 20 years by annually participating 
-                in many Fine Art Shows, Art Festivals, and Art Competitions."
+                I have established myself as a Fine Artist over the past 20 years by annually participating 
+                in many Fine Art Shows, Art Festivals, and Art Competitions.
               </p>
             </blockquote>
           </div>
@@ -134,7 +134,7 @@ const awards = [
               <ul class="list-unstyled mb-4 text-start d-inline-block mx-auto">
                 <li class="mb-2"><strong>Size:</strong> 11’’ x 14’’ (Matted Frame)</li>
                 <li class="mb-2"><strong>Price:</strong> $24.00 per print</li>
-                <li class="mb-2"><strong>Shipping:</strong> +$6.00 (Flat Rate)</li>
+                <!-- <li class="mb-2"><strong>Shipping:</strong> +$6.00 (Flat Rate)</li> -->
               </ul>
               
               <div class="d-grid gap-2">
@@ -153,9 +153,10 @@ const awards = [
 /* Hero Styling */
 .hero-section {
   height: 90vh; /* Takes up most of the screen */
+  background-attachment: fixed;
   background-color: var(--dark-background); 
   /* Placeholder for Hero Image - Add actual URL later */
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://via.placeholder.com/1920x1080?text=Oil+Painting+Detail');
+  background-image: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)), url('/images/Banner.png');
   background-size: cover;
   background-position: center;
   color: var(--light-text);
@@ -187,12 +188,45 @@ const awards = [
 
 /* Custom Blockquote */
 .custom-blockquote {
+  position: relative; /* Necessary for absolute positioning of quotes */
   font-family: var(--font-family-headings);
   font-size: 1.25rem;
   line-height: 1.8;
   font-style: italic;
-  border-left: 3px solid var(--color-accent);
-  padding-left: 2rem;
+  
+  /* Remove the old border-left if you prefer the floating quotes look, 
+     or keep it for a combined effect. I commented it out for a cleaner look. */
+  /* border-left: 3px solid var(--color-accent); */
+  
+  padding: 3rem 4rem; /* Add padding so text doesn't overlap the quotes */
+  background: rgba(255, 255, 255, 0.05); /* Optional: subtle background to frame it */
+  border-radius: 8px;
+}
+
+/* The Top-Left Quote */
+.custom-blockquote::before {
+  content: "\201C"; /* Unicode for Left Double Quote */
+  position: absolute;
+  top: 0px;
+  left: 10px;
+  font-size: 6rem;
+  color: var(--color-accent); /* Gold color */
+  font-family: serif;
+  opacity: 0.3; /* Subtle transparency */
+  line-height: 1;
+}
+
+/* The Bottom-Right Quote */
+.custom-blockquote::after {
+  content: "\201D"; /* Unicode for Right Double Quote */
+  position: absolute;
+  bottom: -40px; /* Push it down slightly */
+  right: 20px;
+  font-size: 6rem;
+  color: var(--color-accent);
+  font-family: serif;
+  opacity: 0.3;
+  line-height: 1;
 }
 
 /* Divider for Sections */

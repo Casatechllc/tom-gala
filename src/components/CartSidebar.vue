@@ -12,7 +12,7 @@ const { state, count, total, subtotal, removeFromCart, toggleCart, SHIPPING_RATE
       @click="toggleCart" 
       class="floating-cart-btn shadow-lg"
     >
-      <span class="cart-icon">🛒</span>
+      <span class="cart-icon bi bi-cart-fill" ></span>
       <span class="cart-count">{{ count }}</span>
     </button>
 

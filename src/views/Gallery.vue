@@ -35,7 +35,7 @@ const openModal = (art) => {
     <header class="gallery-header text-center section-padding">
       <div class="container">
         <h1 data-aos="fade-down">Art Portfolio & Shop</h1>
-        <p class="lead text-muted">Original Oil Paintings available as 11’’ x 14’’ Matted Prints.</p>
+        <p class="lead">Original Oil Paintings available as 11’’ x 14’’ Matted Prints.</p>
       </div>
     </header>
 
@@ -55,8 +55,8 @@ const openModal = (art) => {
             
             <div class="card-img-wrapper" @click="openModal(art)"> <img :src="art.image" :alt="art.title" class="card-img-top">
               <div class="overlay d-flex align-items-center justify-content-center">
-                <button class="btn btn-light rounded-circle shadow-sm p-3">
-                  <span style="font-size: 1.2rem;">👁️</span>
+                <button class="btn btn-light rounded-circle shadow-sm">
+                  <span style="font-size: 1.2rem; color:var(--color-primary)" class="bi bi-eye-fill"></span>
                 </button>
               </div>
             </div>
@@ -100,14 +100,36 @@ const openModal = (art) => {
 
 <style scoped>
 /* Filter Buttons */
-.filter-btn {
+.gallery-view {
+  background-attachment: fixed;
+  background-image: linear-gradient(180deg,rgba(0, 0, 0, 1) 32%, rgba(0, 0, 0, 1) 9%, rgba(0, 0, 0, 0.44) 56%, rgba(0, 0, 0, 0.25) 70%, rgba(0, 0, 0, 0) 85%),
+    linear-gradient(rgba(240, 239, 231, 0.5), rgba(240, 239, 231, 0.5)),
+    url('/images/Background.png');
+  background-size: cover;
+  background-position: center;
+}
+
+.gallery-header {
   background: transparent;
-  border: 1px solid #ddd;
+}
+
+.gallery-header p {
+  color: var(--light-text);
+}
+
+.gallery-header h1 {
+  color: var(--light-text);
+}
+
+.filter-btn {
+  /* background: transparent; */
+  border: 2px solid #ddd;
   padding: 8px 16px;
   border-radius: 20px;
   color: var(--color-primary);
   font-family: var(--font-family-body);
   transition: var(--transition-color);
+  background-color: var(--color-background);
 }
 
 .filter-btn:hover, .filter-btn.active {
@@ -146,81 +168,5 @@ const openModal = (art) => {
 
 .card:hover .overlay {
   opacity: 1;
-}
-
-/* Floating Cart Button */
-.floating-cart-btn {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background-color: var(--color-accent);
-  color: white;
-  border: none;
-  font-size: 1.5rem;
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: transform 0.2s;
-}
-
-.floating-cart-btn:hover {
-  transform: scale(1.1);
-}
-
-.cart-count {
-  position: absolute;
-  top: 0;
-  right: 0;
-  background: var(--color-primary);
-  color: white;
-  font-size: 0.8rem;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Cart Sidebar */
-.cart-sidebar {
-  position: fixed;
-  top: 0;
-  right: -400px; /* Hidden by default */
-  width: 350px;
-  height: 100vh;
-  background: white;
-  z-index: 1050;
-  transition: right 0.3s ease-in-out;
-  display: flex;
-  flex-direction: column;
-}
-
-.cart-sidebar.open {
-  right: 0;
-}
-
-.cart-body {
-  flex-grow: 1;
-  overflow-y: auto;
-}
-
-.cart-backdrop {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0,0,0,0.5);
-  z-index: 1040;
-}
-
-.remove-link:hover {
-  text-decoration: underline;
 }
 </style>

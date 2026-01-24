@@ -59,7 +59,7 @@ onUnmounted(() => {
             <router-link to="/gallery" class="nav-link" active-class="active" @click="closeNav">Gallery & Shop</router-link>
           </li>
           <li class="nav-item">
-            <a href="mailto:email@example.com" class="nav-link btn-contact" @click="closeNav">Contact</a>
+            <a href="mailto:tomgala35@gmail.com" class="nav-link btn-contact" @click="closeNav">Contact</a>
           </li>
         </ul>
       </div>
