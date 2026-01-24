@@ -53,7 +53,15 @@ const openModal = (art) => {
         <div v-for="art in filteredArtworks" :key="art.id" class="col-md-6 col-lg-3" data-aos="fade-up">
           <div class="card art-card h-100 border-0">
             
-            <div class="card-img-wrapper" @click="openModal(art)"> <img :src="art.image" :alt="art.title" class="card-img-top">
+            <div class="card-img-wrapper" @click="openModal(art)">
+              <img 
+                :src="art.image" 
+                :alt="art.title" 
+                class="card-img-top"
+                loading="lazy" 
+                width="400" 
+                height="500"
+              >
               <div class="overlay d-flex align-items-center justify-content-center">
                 <button class="btn btn-light rounded-circle shadow-sm">
                   <span style="font-size: 1.2rem; color:var(--color-primary)" class="bi bi-eye-fill"></span>
@@ -143,6 +151,18 @@ const openModal = (art) => {
   position: relative;
   overflow: hidden;
   cursor: pointer;
+  
+  /* Placeholder Background */
+  background-color: #e0e0e0; /* Light Grey */
+  
+  /* Optional: Add a subtle loading animation */
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { background-color: #e0e0e0; }
+  50% { background-color: #f0f0f0; }
+  100% { background-color: #e0e0e0; }
 }
 
 .card-img-top {
