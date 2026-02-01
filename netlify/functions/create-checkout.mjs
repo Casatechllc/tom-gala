@@ -31,11 +31,11 @@ export const handler = async (event) => {
       };
     });
 
-    line_items.push({
-      name: "Shipping & Handling",
-      quantity: "1",
-      base_price_money: { amount: 600, currency: 'USD' } // $6.00
-    });
+    // line_items.push({
+    //   name: "Shipping & Handling",
+    //   quantity: "1",
+    //   base_price_money: { amount: 600, currency: 'USD' } // $6.00
+    // });
 
     const idempotencyKey = randomUUID();
 
@@ -66,6 +66,12 @@ export const handler = async (event) => {
         checkout_options: {
           redirect_url: (process.env.URL || event.headers.referer || 'http://localhost:8888') + '/success',
           ask_for_shipping_address: true,
+          shipping_options: [
+            {
+              name: "Standard Shipping",
+              price_money: { amount: 600, currency: "USD" } // $6.00
+            }
+          ],
         }
       })
     });
