@@ -10,10 +10,10 @@ const year = new Date().getFullYear();
         <a href="mailto:tomgala35@gmail.com" class="contact-link mx-2">
           tomgala35@gmail.com
         </a>
-        <span class="divider d-none d-md-inline">|</span>
+        <!-- <span class="divider d-none d-md-inline">|</span>
         <a href="tel:+12038489212" class="contact-link mx-2">
           (203) 848-9212
-        </a>
+        </a> -->
       </div>
 
       <p class="mb-1 text-muted copyright">
