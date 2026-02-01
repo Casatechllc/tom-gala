@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/Home.vue'
+import Success from '../views/Success.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -18,6 +19,11 @@ const router = createRouter({
       path: '/gallery',
       name: 'gallery',
       component: () => import('../views/Gallery.vue')
+    },
+    {
+      path: '/success',
+      name: 'success',
+      component: Success
     },
   ],
     scrollBehavior(to, from, savedPosition) {

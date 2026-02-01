@@ -23,6 +23,7 @@ coverage
 *.njsproj
 *.sln
 *.sw?
+*.env
 
 *.tsbuildinfo
 
@@ -34,3 +35,6 @@ coverage
 
 # Vitest
 __screenshots__/
+
+# Local Netlify folder
+.netlify

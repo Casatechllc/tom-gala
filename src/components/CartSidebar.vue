@@ -1,8 +1,55 @@
 <script setup>
+import { ref } from 'vue';
 import { useCart } from '../store/cart.js';
 
-// Import the global cart logic
-const { state, count, total, subtotal, removeFromCart, toggleCart, SHIPPING_RATE, PRINT_PRICE } = useCart();
+const { 
+  state, 
+  count, 
+  total, 
+  subtotal, 
+  removeFromCart, 
+  toggleCart, 
+  SHIPPING_RATE, 
+  PRINT_PRICE 
+} = useCart();
+
+const isLoading = ref(false);
+const errorMessage = ref(''); // <--- NEW: Holds the error message
+
+const handleCheckout = async () => {
+  if (!state.items || state.items.length === 0) return;
+
+  isLoading.value = true;
+  errorMessage.value = ''; // Reset error before trying
+
+  try {
+    const response = await fetch('/.netlify/functions/create-checkout', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ 
+        cartItems: state.items 
+      }),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      // If server sends an error, show it in the box
+      throw new Error(data.details || 'Unable to connect to Square.');
+    }
+
+    if (data.url) {
+      window.location.href = data.url;
+    }
+
+  } catch (error) {
+    console.error('Checkout Error:', error);
+    // Show the nice error message inside the drawer
+    errorMessage.value = "Payment system is offline. Please try again.";
+  } finally {
+    isLoading.value = false;
+  }
+};
 </script>
 
 <template>
@@ -58,7 +105,23 @@ const { state, count, total, subtotal, removeFromCart, toggleCart, SHIPPING_RATE
           <span>Total</span>
           <span>${{ total }}</span>
         </div>
-        <button class="btn btn-primary w-100">Checkout Now</button>
+        
+        <div v-if="errorMessage" class="alert alert-danger p-2 mb-3 text-center small">
+          <i class="bi bi-exclamation-circle-fill me-1"></i> {{ errorMessage }}
+        </div>
+
+        <button 
+          @click="handleCheckout" 
+          :disabled="isLoading"
+          class="btn btn-primary w-100 py-2 d-flex justify-content-center align-items-center gap-2"
+        >
+          <span v-if="isLoading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+          {{ isLoading ? 'Processing...' : 'Checkout Now' }}
+        </button>
+        
+        <small class="d-block text-center text-muted mt-2" style="font-size: 0.75rem;">
+          Secure payments powered by Square
+        </small>
       </div>
     </div>
     
@@ -67,7 +130,7 @@ const { state, count, total, subtotal, removeFromCart, toggleCart, SHIPPING_RATE
 </template>
 
 <style scoped>
-/* Floating Cart Button */
+/* (All your existing styles stay exactly the same) */
 .floating-cart-btn {
   position: fixed;
   bottom: 30px;
@@ -79,7 +142,7 @@ const { state, count, total, subtotal, removeFromCart, toggleCart, SHIPPING_RATE
   color: white;
   border: none;
   font-size: 1.5rem;
-  z-index: 2000; /* Higher Z-index to sit on top of everything */
+  z-index: 2000;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -106,7 +169,6 @@ const { state, count, total, subtotal, removeFromCart, toggleCart, SHIPPING_RATE
   justify-content: center;
 }
 
-/* Cart Sidebar */
 .cart-sidebar {
   position: fixed;
   top: 0;
@@ -114,7 +176,7 @@ const { state, count, total, subtotal, removeFromCart, toggleCart, SHIPPING_RATE
   width: 350px;
   height: 100vh;
   background: white;
-  z-index: 2050; /* Higher than navbar */
+  z-index: 2050;
   transition: right 0.3s ease-in-out;
   display: flex;
   flex-direction: column;
