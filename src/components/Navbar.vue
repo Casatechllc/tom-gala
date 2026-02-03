@@ -58,9 +58,9 @@ onUnmounted(() => {
           <li class="nav-item">
             <router-link to="/gallery" class="nav-link" active-class="active" @click="closeNav">Gallery & Shop</router-link>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a href="mailto:tomgala35@gmail.com" class="nav-link btn-contact" @click="closeNav">Contact</a>
-          </li>
+          </li> -->
         </ul>
       </div>
     </div>
@@ -113,7 +113,7 @@ onUnmounted(() => {
 }
 
 /* Contact Button Style override */
-.btn-contact {
+/* .btn-contact {
   border: 1px solid var(--color-primary);
   padding: 5px 20px;
   border-radius: 20px;
@@ -123,7 +123,7 @@ onUnmounted(() => {
 .btn-contact:hover {
   background-color: var(--color-primary);
   color: white !important;
-}
+} */
 
 /* Mobile Toggler Adjustment */
 .navbar-toggler:focus {

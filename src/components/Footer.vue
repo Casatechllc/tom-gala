@@ -7,6 +7,7 @@ const year = new Date().getFullYear();
     <div class="container text-center py-4">
       
       <div class="contact-info mb-3">
+        <p>Any Questions? Contact me at:</p></br>
         <a href="mailto:tomgala35@gmail.com" class="contact-link mx-2">
           tomgala35@gmail.com
         </a>
